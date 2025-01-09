@@ -33,7 +33,8 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        gap: 80px;
         align-items: center;
         li{
             width: 80%;
@@ -69,4 +70,8 @@
     color: #fff;
 }
 
+.container .row .col-12 .card{
+    background-color: #417b61;
+    color: var(--light);
+}
 

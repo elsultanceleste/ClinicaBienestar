@@ -7,15 +7,9 @@
 
         <div class="menu w-100 d-flex justify-content-center">
             <ul class="list-unstyled">
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
+                <li><a class=" btn" href="./index.php">Inicio</a></li>
                 <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
+                <li><a class=" btn" href="#">Pacientes Ingresados</a></li>
                 
             </ul>
                     
