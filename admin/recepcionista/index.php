@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/estilos.css">
-    <link rel="stylesheet" href="./css/all.css">
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <?php include './components/estilos.php'?>
 </head>
 <body>
 
@@ -33,7 +31,8 @@
                     </a>
                     
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Cuenta</a></li>
+                        <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                        <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
                         <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
                     </ul>
                 </div>
@@ -87,11 +86,12 @@
 
         <!-- TABLA -->
 
-        <div class="container w-100 h-50 d-flex flex-column justify-content-center p-3">
+        <div class="container w-100  mt-5 d-flex flex-column justify-content-center p-3">
             <p class="h4 w-100 text-center">CITAS DE HOY</p>
-            <table class="table">
+            <div class="table-responsive">
+            <table class="table  ">
                 <thead class="text-center">
-                    <tr>
+                    <tr class="table-success"> 
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
@@ -113,7 +113,6 @@
                     <td>
                         Lorem, ipsum dolor sit 
                         amet consectetur adipisicing elit. 
-                        Quis, maiores!
                     </td>
                     </tr>
 
@@ -146,20 +145,23 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
 
 
 
 </div>
 
+
+
+<!-- ASIDE-RESPONSIVE -->
+
 <?php include './components/sidebarResponsive.php'; ?>
 
-
     
+<!-- FOOTER -->
+<?php require( './components/footer.php'); ?>
 
-<script src="./js/all.js"></script>
-<script src="./js/bootstrap.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 </body>
 </html>
