@@ -84,9 +84,12 @@
         </div>
 
            <!-- GRAFICA -->
-        <div class="grafica col-12 pt-3 d-flex justify-content-center">
-            <div class="col-12 col-lg-10">
-                <canvas id="grafica" class="graf" width="100" height="20"></canvas>
+        <div class="grafica col-12 pt-3 d-flex justify-content-center flex-column">
+            <div class="container">
+                <h3 class="text-center">Pacientes atendidos por mes</h3>
+            </div>
+            <div class="container col-lg-10">
+                <canvas id="grafica" class="graf" width="100" height="50"></canvas>
             </div>
         </div>
     </div>
