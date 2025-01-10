@@ -11,7 +11,7 @@
 <div class="general d-flex col-sm-12 col-md-12">
 
 <?php include './components/sidebar.php'; ?>
-
+<?php include './components/sidebarResponsive.php'; ?>
 
 <div class="main col-12 col-lg-9 ">
 
@@ -27,7 +27,7 @@
         <div class="user">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fa-solid fa-user"></i> Recepcionista
+                    <i class="fa-solid fa-user"></i> Enfermeros
                 </a>
                 
                 <ul class="dropdown-menu">
@@ -47,7 +47,7 @@
             <div class=" col-12 col-md-6 col-lg-4">
                 <div class="card mt-3">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Pacientes</h5> 
+                        <h5 class="card-title text-center">Pacientes Ingresados</h5> 
                         <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                             <i class="fa-solid fa-user fs-3"></i>
                             <span class="fs-3">150</span>
@@ -60,7 +60,7 @@
             <div class=" col-12 col-md-6 col-lg-4">
                 <div class="card mt-3">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Citas totales</h5> 
+                        <h5 class="card-title text-center">Total de Farmacos</h5> 
                         <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                         <i class="fa-solid fa-calendar-check fs-3"></i>
                             <span class="fs-3">15</span>
@@ -72,7 +72,7 @@
             <div class=" col-12 col-md-6 col-lg-4">
                 <div class="card mt-3">
                     <div class="card-body">
-                        <h5 class="card-title text-center">Citas Pendientes</h5> 
+                        <h5 class="card-title text-center">Pacientes Atendidos</h5> 
                         <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                         <i class="fa-regular fa-calendar-check fs-3"></i>
                             <span class="fs-3">7</span>
