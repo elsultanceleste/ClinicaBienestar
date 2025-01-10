@@ -82,7 +82,15 @@
                 </div>
             </div>
         </div>
+
+           <!-- GRAFICA -->
+        <div class="grafica col-12 pt-3 d-flex justify-content-center">
+            <div class="col-12 col-lg-10">
+                <canvas id="grafica" class="graf" width="100" height="20"></canvas>
+            </div>
+        </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
     <?php require( './components/footer.php'); ?>
