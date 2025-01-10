@@ -89,9 +89,9 @@
         <div class="container w-100  mt-5 d-flex flex-column justify-content-center p-3">
             <p class="h4 w-100 text-center">CITAS DE HOY</p>
             <div class="table-responsive">
-            <table class="table  ">
+            <table class="table table-striped-columns table-success">
                 <thead class="text-center">
-                    <tr class="table-success"> 
+                    <tr class="table-"> 
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
