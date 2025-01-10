@@ -9,7 +9,7 @@
             <ul class="list-unstyled">
                 <li><a class=" btn" href="./index.php">Inicio</a></li>
                 <li><a class=" btn" href="./historial.php">Historial del Paciente</a></li>
-                <li><a class=" btn" href="#">Mis Pacientes</a></li>
+                <li><a class=" btn" href="./mispacientes.php">Mis Pacientes</a></li>
                 
             </ul>
                     
