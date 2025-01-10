@@ -12,7 +12,7 @@
     <?php include './components/sidebar.php'; ?>
     <?php include './components/sidebarResponsive.php'; ?>
 
-    <div class="main col-12 col-lg-9 ">
+    <div class="main col-12 col-lg-9">
 
         <!-- HEADER -->
 
