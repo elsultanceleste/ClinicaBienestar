@@ -43,17 +43,85 @@
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex justify-content-center mt-4">
-                <input class="col-9 buscar" type="text" placeholder="Buscar....">
-                <input class="col-1 mx-2 btn btn-success" type="submit" >
+                <input class="col-8 buscar" type="text" placeholder="Buscar....">
+                <input class="col-1 mx-1 btn btn-success" type="submit" >
             </div>
         </div>
 
            <!-- GRAFICA -->
-        <div class="grafica bg-info col-12 pt-3 d-flex justify-content-center flex-column mt-4">
+        <div class="grafica col-12 pt-3 d-flex justify-content-center flex-column mt-4">
             <div class="container">
                 <h3 class="text-center">Historial de los pacientes</h3>
             </div>
-            
+            <div class="container table-responsive">
+                <table class="table mt-3 table-success table-striped">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nombre</th>
+                            <th>Apellido</th>
+                            <th>Edad</th>
+                            <th>Sexo</th>
+                            <th>Dirección</th>
+                            <th>Fecha Retiro</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Juan</td>
+                            <td>Perez</td>
+                            <td>25</td>
+                            <td>Masculino</td>
+                            <td>Ukomba</td>
+                            <td>09-01-2025</td>
+                            <td>
+                                <i class="bi bi-trash3-fill"></i>
+                                <i class="bi bi-pencil-square"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Juan</td>
+                            <td>Perez</td>
+                            <td>25</td>
+                            <td>Masculino</td>
+                            <td>Ukomba</td>
+                            <td>09-01-2025</td>
+                            <td>
+                                <i class="bi bi-trash3-fill"></i>
+                                <i class="bi bi-pencil-square"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Juan</td>
+                            <td>Perez</td>
+                            <td>25</td>
+                            <td>Masculino</td>
+                            <td>Ukomba</td>
+                            <td>09-01-2025</td>
+                            <td>
+                                <i class="bi bi-trash3-fill"></i>
+                                <i class="bi bi-pencil-square"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Juan</td>
+                            <td>Perez</td>
+                            <td>25</td>
+                            <td>Masculino</td>
+                            <td>Ukomba</td>
+                            <td>09-01-2025</td>
+                            <td>
+                                <i class="bi bi-trash3-fill"></i>
+                                <i class="bi bi-pencil-square"></i>
+                            </td>
+                        </tr>
+                </table>
+            </div>
         </div>
     </div>
 
