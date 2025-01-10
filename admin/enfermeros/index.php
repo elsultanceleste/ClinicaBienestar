@@ -4,55 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enfermero</title>
-    <link rel="stylesheet" href="./css/all.css">
-    <link rel="stylesheet" href="./css/bootstrap.css">
-    <link rel="stylesheet" href="./css/estilos.css">
+    <?php include './components/estilos.php'?>
 </head>
-<body class="d-flex">
+<body>
 
-<div class="sidebar d-none d-sm-none d-md-none d-lg-block">
-        <div class="logo w-100 d-flex justify-content-center flex-column align-items-center pt-2 mb-3">
-            <img src="./img/logoClinica2.png" width="80px" alt="logo">
-            <p class="text-white h4">CLINICA</p>
-            <p class="text-white h4">Bienestar</p>
+<div class="general d-flex col-sm-12 col-md-12">
+
+<?php include './components/sidebar.php'; ?>
+
+
+<div class="main col-12 col-lg-9 ">
+
+    <!-- HEADER -->
+
+    <div class="header container b p-2 d-flex justify-content-between w-100 align-items-center col-12 ">
+        <div class="btn-menu">
+        <button class="btn d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+        <i class="fa-solid fa-bars fs-2"></i>
+        </button>
         </div>
 
-        <div class="menu w-100 d-flex justify-content-center">
-            <ul class="list-unstyled">
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Historial del Paciente</a></li>
-                <li><a class=" btn" href="#">Mis Pacientes</a></li>    
-            </ul> 
-        </div>        
-</div>
-
-<div class="container bg-danger">
-    <div class="container-fluid mt-2 bg-info d-flex justify-content-end">
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa-solid fa-user"></i> Usuario
-            </a>
-                    
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Perfil</a></li>
-                <li><a class="dropdown-item" href="#">Cuenta</a></li>
-                <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
-            </ul>
+        <div class="user">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i> Recepcionista
+                </a>
+                
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                    <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                    <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="container-fluid bg-primary d-flex justify-content-around mt-2">
-        <div class="d-flex justify-content-center m-3 bg-danger" style="width:300px; height:150px ;">
-            <h4>Pacientes Ingresados</h4>
-        </div>
-        <div class="d-flex justify-content-center m-3 bg-danger" style="width:300px; height:150px ;">
-            <h4>Total de Farmacos</h4>
-        </div>
-        <div class="d-flex justify-content-center m-3 bg-danger" style="width:300px; height:150px ;">
-            <h4>Pacientes Atendidos</h4>
+
+    <!-- RESUMEN -->
+
+    <div class="container">
+        <div class="row">
+
+            <div class=" col-12 col-md-6 col-lg-4">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Pacientes</h5> 
+                        <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
+                            <i class="fa-solid fa-user fs-3"></i>
+                            <span class="fs-3">150</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class=" col-12 col-md-6 col-lg-4">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Citas totales</h5> 
+                        <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
+                        <i class="fa-solid fa-calendar-check fs-3"></i>
+                            <span class="fs-3">15</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class=" col-12 col-md-6 col-lg-4">
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Citas Pendientes</h5> 
+                        <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
+                        <i class="fa-regular fa-calendar-check fs-3"></i>
+                            <span class="fs-3">7</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="../"></script>
+
+    <?php require( './components/footer.php'); ?>
 </body>
 </html>
