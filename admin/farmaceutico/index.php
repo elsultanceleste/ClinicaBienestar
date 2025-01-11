@@ -7,6 +7,7 @@
     <?php include './components/estilos.php'?>
 </head>
 <body>
+
 <div class="general d-flex col-sm-12 col-md-12">
 
 <?php include './components/sidebar.php'; ?>
@@ -122,7 +123,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
+</div>
     <?php require( './components/footer.php'); ?>
 </body>
 </html>

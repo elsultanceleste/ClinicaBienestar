@@ -40,7 +40,7 @@ const ctx = document.getElementById('farmacos');
                 display: false
             },
             border:{
-                display: false
+                display: true
             },
         }
       }
