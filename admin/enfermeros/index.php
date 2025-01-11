@@ -75,7 +75,7 @@
                         <h5 class="card-title text-center">Pacientes Atendidos</h5> 
                         <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                         <i class="fa-regular fa-calendar-check fs-3"></i>
-                            <span class="fs-3">7</span>
+                            <span class="fs-3">15</span>
                         </div>
                         
                     </div>
