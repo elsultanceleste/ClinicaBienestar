@@ -57,14 +57,14 @@
             <p class="h4 w-100 text-center">CITAS</p>
 
             <div class="col-12 mb-5">
-                <a  class="btn btn-success ">Nueva cita</a>
+                <a  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Nueva cita</a>
             </div>
 
             <div class="table-responsive ">
             <table class="table table-striped-columns table-success">
                 <thead class="text-center">
                     <tr>
-                         
+
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Apellidos</th>
@@ -122,7 +122,64 @@
         </div>
 
 
+
+        <!-- ASIDE-RESPONSIVE -->
+
+        <?php include './components/sidebarResponsive.php'; ?>
+
+            
+        <!-- FOOTER -->
+        <?php require( './components/footer.php'); ?>
+
+
     </div>    
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar cita</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+            <form action="" method="post">
+                <div class="mb-3">
+                    <label for="paciente" class="form-label">Nombre del paciente</label>
+                    <input type="text" class="form-control" id="paciente" name="paciente">
+                </div>
+                <div class="mb-3">
+                    <label for="apellidos" class="form-label">Apellidos del paciente</label>
+                    <input type="text" class="form-control" id="apellidos" name="apellidos">
+                </div>
+                <div class="mb-3">
+                    <label for="medico" class="form-label">Medico</label>
+                    <select name="medico" id="" class="form-control">
+                        <option value="">Selecionar doctor</option>
+                        <option value="" name="">Doctor1</option>
+                        <option value="" name="">Doctor2</option>
+                        <option value="" name="">Doctor3</option>
+                        <option value="" name="">Doctor4</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="hora" class="form-label">Hora</label>
+                    <input type="time" class="form-control" id="hora" name="hora">
+                </div>
+
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripcion</label>
+                    <textarea name="descripcion" class="form-control" id="descripcion"></textarea>
+                </div>
+                
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn guardar" >Agregar cita</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar</button>
+      </div>
+    </div>
+  </div>
 </div>
     
 </body>
