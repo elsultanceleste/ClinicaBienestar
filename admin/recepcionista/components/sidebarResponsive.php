@@ -13,8 +13,8 @@
         <div class="menu w-100 d-flex justify-content-center">
             <ul class="list-unstyled">
                 <li><a class=" btn" href="./index.php">Dashboard</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
+                <li><a class=" btn" href="./citas.php">Citas</a></li>
+                <li><a class=" btn" href="./pacientesIngresados.php">Pacientes Ingresados</a></li>
                 
             </ul>
                     
