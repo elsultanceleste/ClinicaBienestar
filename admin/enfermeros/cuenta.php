@@ -11,7 +11,7 @@
         <h2 class="text-center">Condiguracion de cuenta</h2>
         <div class="container Confi d-flex">
             <div class="confInfo  h-50 w-50 text-center  mt-3">
-                <p class="h3 text-center mt-4 titulo">Recepcionista</p>
+                <p class="h3 text-center mt-4 titulo">Enfermero</p>
                 <div class="confDatos d-flex gap-3">
                     <p class="h4">Usuario: <span class="h4 fs-5">Dylan08</span></p>
                     <p class="h4">Contraseña: <span class="h4 fs-5">********</span></p>

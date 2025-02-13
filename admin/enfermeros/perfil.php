@@ -16,7 +16,7 @@
                 <img src="./img/logoCLinica2.png" alt="">
             </div>
             <div class="confInfo  h-50 w-50 text-center  mt-3">
-                <p class="h3 text-center mt-4 titulo">Recepcionista</p>
+                <p class="h3 text-center mt-4 titulo">Enfermero</p>
                 <div class="confDatos">
                     <p class="h4">Nombre: <span class="h4 fs-5">Zabulon</span></p>
                     <p class="h4">Apellidos: <span class="h4 fs-5">Sima oluy</span></p>
