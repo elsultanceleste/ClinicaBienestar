@@ -9,7 +9,7 @@
             <ul class="list-unstyled">
                 <li><a class=" btn" href="./index.php">Inicio</a></li>
                 <li><a class=" btn" href="./farmacos.php">Farmacos</a></li>
-                <li><a class=" btn" href="#">Categorias de Farmacos</a></li>
+                <li><a class=" btn" href="./categoria.php">Categorias de Farmacos</a></li>
                 
             </ul>
                     
