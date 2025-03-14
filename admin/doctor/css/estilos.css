@@ -70,3 +70,7 @@
 }
 
 
+.container .row .col-12 .card{
+    background-color: #417b61;
+    color: var(--light);
+}
