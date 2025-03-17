@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['id'])){
+    
+};
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +13,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./css/estilos.css">
-    <link rel="stylesheet" href="./css/all.css">
-    <link rel="stylesheet" href="./css/bootstrap.css">
+    <?php  require_once('./components/liks.php')?>
 </head>
 
 <body>
+    <input type="text" class="d-none" id="id_medico" value="<?php  if(isset($_SESSION['id']))echo $_SESSION['id_medico']?>">
 
     <div class="general d-flex col-sm-12 col-md-12">
 
@@ -30,7 +37,7 @@
                 <div class="user">
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Usuario
+                            <i class="fa-solid fa-user"></i> Dr.<?php  if(isset($_SESSION['nombre']))echo $_SESSION['nombre']?>
                         </a>
 
                         <ul class="dropdown-menu">
@@ -216,14 +223,11 @@
 
     <?php include './components/sidebarResponsive.php'; ?>
 
+    <?php  require_once('./components/script.php')?>
 
 
 
-    <script src="./js/all.js"></script>
-    <script src="./js/bootstrap.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="./js/chart.umd.js"></script>
-    <script src="./js/graficas.js"></script>
+    
 
 </body>
 
