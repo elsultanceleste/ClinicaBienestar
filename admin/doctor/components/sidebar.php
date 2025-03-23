@@ -7,21 +7,11 @@
 
         <div class="menu w-100 d-flex justify-content-center">
             <ul class="list-unstyled">
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                
-            </ul>
-                    
-            
+            <li><a class=" btn" href="./dashboard.php">Inicio</a></li>
+                <!-- <li><a class=" btn" href="./diagnosticos.php">Diagnisticos</a></li> -->
+                <!-- <li><a class="btn" href="./recetas.php">Recetas</a></li> -->
+                <li><a class="btn" href="./pacientes.php">Pacientes</a></li>
+                <li><a class=" btn" href="./citas.php">Citas</a></li>
+            </ul>       
         </div>
-        
-        
-        
     </div>

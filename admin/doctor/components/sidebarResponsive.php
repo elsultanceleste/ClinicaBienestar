@@ -13,17 +13,13 @@
         <div class="menu w-100 d-flex justify-content-center">
             <ul class="list-unstyled">
                 <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
+                <li><a class=" btn" href="#">Gestion de diagnisticos</a></li>
+                <li><a class="btn" href="#">Consultas medicas</a></li>
+                <li><a class="btn" href="#">Recetas</a></li>
+                <li><a class="btn" href="#">Pacientes</a></li>
                 <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn" href="#">Inicio</a></li>
-                <li><a class=" btn" href="#">Usuarios</a></li>
-                <li><a class=" btn" href="#">Citas</a></li>
-                <li><a class=" btn mt-3" href="#">Cerrar sesión</a></li>
             </ul>
-                    
+      
         </div>
   </div>
 </div>
