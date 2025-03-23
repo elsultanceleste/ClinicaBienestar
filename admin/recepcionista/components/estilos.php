@@ -4,3 +4,4 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/bootstrap.css">
     <link rel="shortcut icon" href="./img/logoClinica2.png" type="image/x-icon">
+    <link rel="stylesheet" href="./css/sweetalert2.css">

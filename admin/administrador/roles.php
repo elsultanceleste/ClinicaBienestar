@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Medico'){
+    header('location:../doctor/dashboard.php');
+    
+}else if($_SESSION['rol'] == 'Recepcionista'){
+    header('location:../recepcionista/dashboard.php');
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -24,13 +38,15 @@
 
                 <div class="user">
                     <div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Dr. Nombre
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> Dr.<?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
                         </a>
+
+                        <!-- Replace the dropdown menu items with: -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -52,13 +68,13 @@
 
                         <table class="table table-striped table-hover">
                             <thead class="table-success">
-                                <tr>
+                                <tr class="text-center">
                                     <th>ID</th>
                                     <th>Nombre del Rol</th>
-                                    <th>Acciones</th>
+                                    
                                 </tr>
                             </thead>
-                            <tbody id="tablaRol">
+                            <tbody id="tablaRol" class="text-center">
                                 <!-- role -->
                             </tbody>
                         </table>

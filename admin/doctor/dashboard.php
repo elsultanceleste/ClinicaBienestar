@@ -1,8 +1,13 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])){
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Administrador'){
+    header('location:../administrador/dashboard.php');
     
-};
+}else if($_SESSION['rol'] == 'Recepcionista'){
+    header('location:../recepcionista/dashboard.php');
+}
 
 ?>
 
@@ -13,11 +18,11 @@ if (isset($_SESSION['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <?php  require_once('./components/liks.php')?>
+    <?php require_once('./components/liks.php') ?>
 </head>
 
 <body>
-    <input type="text" class="d-none" id="id_medico" value="<?php  if(isset($_SESSION['id']))echo $_SESSION['id_medico']?>">
+    <input type="text" class="d-none" id="id_medico" value="<?php if (isset($_SESSION['id'])) echo $_SESSION['id_medico'] ?>">
 
     <div class="general d-flex col-sm-12 col-md-12">
 
@@ -37,13 +42,14 @@ if (isset($_SESSION['id'])){
                 <div class="user">
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Dr.<?php  if(isset($_SESSION['nombre']))echo $_SESSION['nombre']?>
+                            <i class="fa-solid fa-user"></i> Dr.<?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
                         </a>
 
+                        <!-- Replace the dropdown menu items with: -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Cuenta</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -57,7 +63,7 @@ if (isset($_SESSION['id'])){
                                 <h5 class="card-title text-center">Total de pacientes</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="tPaceintes"></span>
                                 </div>
 
                             </div>
@@ -70,7 +76,7 @@ if (isset($_SESSION['id'])){
                                 <h5 class="card-title text-center">Citas de hoy</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="tCitasHoy"></span>
                                 </div>
 
                             </div>
@@ -83,7 +89,7 @@ if (isset($_SESSION['id'])){
                                 <h5 class="card-title text-center">Consultas realizadas</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="tConsulRealizadas"></span>
                                 </div>
 
                             </div>
@@ -117,102 +123,34 @@ if (isset($_SESSION['id'])){
 
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-6">
+                    <div class="col-12 col-md-6 col-lg-12">
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Citas de hoy</h5>
-                                <table class="table table-striped" style="color: #417b61;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Paciente</th>
-                                            <th scope="col">Hora</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mark</td>
-                                            <td>10:00</td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>11:00</td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>12:00</td>
-                                            <td>
-                                                <button class="btn btn-primary">Ver</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="" style="max-height: 220px; overflow-y: auto;">
+                                    <table class="table table-striped" style="color: #417b61;">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Paciente</th>
+                                                <th scope="col">Hora</th>
+                                                <th scope="col">Tipo</th>
+                                                <th scope="col">Motivo</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="citas_hoy">
+
+                                        </tbody>
+
+                                    </table>
+                                    <div class="" id="vacio">
+
+                                    </div>
+                                </div>
 
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-12 col-md-6 col-lg-6">
-                        <div class="card mt-3">
-                            <div class="card-body">
-                                <h5 class="card-title text-center">Solicitudes de citas</h5>
-                                <table class="table table-striped" style="color: #417b61;">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Paciente</th>
-                                            <th scope="col">Hora</th>
-                                            <th scope="col">Acciones</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mark</td>
-                                            <td>10:00</td>
-                                            <td>
-                                                <button class="btn btn-success">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>11:00</td>
-                                            <td>
-                                                <button class="btn btn-success">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Larry</td>
-                                            <td>12:00</td>
-                                            <td>
-                                                <button class="btn btn-success">
-                                                    <i class="fa fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-danger">
-                                                    <i class="fa fa-times"></i>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-
-
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -223,11 +161,11 @@ if (isset($_SESSION['id'])){
 
     <?php include './components/sidebarResponsive.php'; ?>
 
-    <?php  require_once('./components/script.php')?>
+    <?php require_once('./components/script.php') ?>
 
 
 
-    
+
 
 </body>
 

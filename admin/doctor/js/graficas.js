@@ -1,24 +1,25 @@
 
 let id_medico = document.getElementById('id_medico').value;
 
-function  graficaAtendidos(id_medico) {
-    let datos = new  FormData();
+function graficaAtendidos(id_medico) {
+    let datos = new FormData();
     datos.append("id_medico", id_medico);
-    datos.append("accion","antendidos");
+    datos.append("accion", "antendidos");
+    
     let xhr = new XMLHttpRequest();
     xhr.open('POST', './php/graficaPaciente.php', true);
-    xhr.addEventListener('load', ()=>{
-        
+    xhr.addEventListener('load', () => {
         let respuesta = JSON.parse(xhr.response);
-        
-        const meses = respuesta.map(dato=> dato.mes);
-        const total = respuesta.map(dato=> dato.total);
+        const total = respuesta.map(dato => dato.total);
         const ctx = document.getElementById('myChart').getContext('2d');
 
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: meses,
+                labels: [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                ],
                 datasets: [{
                     label: 'Pacientes Atendidos',
                     data: total,
@@ -27,7 +28,7 @@ function  graficaAtendidos(id_medico) {
                     borderWidth: 2,
                     pointBackgroundColor: '#417b61',
                     pointRadius: 5,
-                    pointHoverRadius: 10, // Aumenta el tamaño al hacer hover
+                    pointHoverRadius: 10,
                     tension: 0.3
                 }]
             },
@@ -35,38 +36,22 @@ function  graficaAtendidos(id_medico) {
                 responsive: true,
                 maintainAspectRatio: false,
                 animation: {
-                    duration: 1500, // Animación inicial
+                    duration: 1500,
                     easing: 'easeOutBounce'
-                },
-                hover: {
-                    mode: 'nearest',
-                    intersect: true,
-                    animationDuration: 400 // Animación al hacer hover
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        ticks: { font: { size: 12 }, color: '#666' }
-                    },
-                    x: {
-                        ticks: { font: { size: 12 }, color: '#666' }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: false,
+                        ticks: {
+                            stepSize: 1,
+                            precision: 0
+                        }
                     }
                 }
             }
         });
-
-        
-        
-
     });
-
     xhr.send(datos);
-    
 }
 
 function citas(id_medico) {
@@ -111,8 +96,68 @@ function citas(id_medico) {
     xhr.send(datos);
     
 }
+
+function citarHoy(id_medico) {
+    let datos = new  FormData();
+    datos.append("id_medico", id_medico);
+    datos.append("accion","citas_hoy");
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', './php/graficaPaciente.php', true);
+    xhr.addEventListener('load', ()=>{
+        console.log(xhr.response);
+        
+        let respuesta = JSON.parse(xhr.response);
+        if (respuesta.length > 0) {
+            let tablaCitasHoy = document.getElementById('citas_hoy');
+            tablaCitasHoy.innerHTML = '';
+            for(let cita of respuesta){
+                tablaCitasHoy.innerHTML+=`
+                                        <tr>
+                                                <td>${cita.nombre}</td>
+                                                <td>${cita.hora}</td>
+                                                <td>${cita.tipo}</td>
+                                                <td>${cita.motivo}</td>
+                                            </tr>
+                `
+            };
+            
+        }else{
+            let tablaCitasHoy = document.getElementById('vacio');
+            tablaCitasHoy.innerHTML = "<p class='text-center h6'>No hay citas para hoy.</p>";
+        }
+        
+    });
+    
+    xhr.send(datos);
+}
 graficaAtendidos(id_medico);
 citas(id_medico);
+
+citarHoy(id_medico);
+
+function resumen(id_medico) {
+    let datos = new  FormData();
+    datos.append("id_medico", id_medico);
+    datos.append("accion","resumen");
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', './php/graficaPaciente.php', true);
+    xhr.addEventListener('load', ()=>{
+        
+        let respuesta = JSON.parse(xhr.response);
+        console.log(respuesta);
+        
+       document.getElementById('tPaceintes').textContent = respuesta[0].total_pacientes;
+       document.getElementById('tCitasHoy').textContent = respuesta[0].citas_hoy;
+       document.getElementById('tConsulRealizadas').textContent = respuesta[0].consultas_medico;
+
+
+
+    });
+    xhr.send(datos);
+    
+}
+
+resumen(id_medico);
 
 
        

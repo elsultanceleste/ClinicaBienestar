@@ -1,6 +1,12 @@
 <?php
 session_start();
-if (isset($_SESSION['id'])) {
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Medico'){
+    header('location:../doctor/dashboard.php');
+    
+}else if($_SESSION['rol'] == 'Recepcionista'){
+    header('location:../recepcionista/dashboard.php');
 }
 
 
@@ -36,13 +42,14 @@ if (isset($_SESSION['id'])) {
                 <div class="user">
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> <?php  if(isset($_SESSION['nombre']))echo $_SESSION['nombre']?>
+                            <i class="fa-solid fa-user"></i> Dr.<?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
                         </a>
 
+                        <!-- Replace the dropdown menu items with: -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Cuenta</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -56,7 +63,7 @@ if (isset($_SESSION['id'])) {
                                 <h5 class="card-title text-center">Empleados</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="total-empleados">150</span>
                                 </div>
 
                             </div>
@@ -69,7 +76,7 @@ if (isset($_SESSION['id'])) {
                                 <h5 class="card-title text-center">Pacientes</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="total-pacientes">150</span>
                                 </div>
 
                             </div>
@@ -82,7 +89,7 @@ if (isset($_SESSION['id'])) {
                                 <h5 class="card-title text-center">Usuarios</h5>
                                 <div class=" w-100 d-flex align-items-center justify-content-center gap-3 ">
                                     <i class="fa-solid fa-user fs-3"></i>
-                                    <span class="fs-3">150</span>
+                                    <span class="fs-3" id="total-usuarios">150</span>
                                 </div>
 
                             </div>
@@ -114,7 +121,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Roles</h5>
-                                <table class="table table-striped text-center" style="color: #417b61;">
+                                <table class="table table-striped text-center" id="tabla-roles" style="color: #417b61;">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -163,7 +170,7 @@ if (isset($_SESSION['id'])) {
                         <div class="card mt-3">
                             <div class="card-body">
                                 <h5 class="card-title text-center">Medicos</h5>
-                                <table class="table table-striped" style="color: #417b61;">
+                                <table class="table table-striped" id="tabla-medicos" style="color: #417b61;">
                                     <thead>
                                         <tr>
                                             <th scope="col">Nombre</th>
@@ -232,8 +239,45 @@ if (isset($_SESSION['id'])) {
 
 
 
+    <script src="js/dashboard.js"></script>
 
 
+<!-- Modal Actualizar Médico -->
+<div class="modal fade" id="actualizarMedicoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Actualizar Médico</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formActualizarMedico">
+                    <input type="hidden" id="medico_id" name="medico_id">
+                    <div class="mb-3">
+                        <label class="form-label">Especialidad</label>
+                        <input type="text" class="form-control" id="especialidad" name="especialidad" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Título Profesional</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo_profesional" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Experiencia (años)</label>
+                        <input type="number" class="form-control" id="experiencia" name="experiencia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Idiomas</label>
+                        <input type="text" class="form-control" id="idiomas" name="idiomas" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="actualizarMedico()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 </html>

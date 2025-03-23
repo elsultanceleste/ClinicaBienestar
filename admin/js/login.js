@@ -29,6 +29,14 @@ login.addEventListener('submit', (e)=>{
                 icon: 'error',
                 confirmButtonText: 'Aceptar'
             });
+        }else if (respuesta == 100) {
+            //sweetalert2 de cuenta deshabilitada
+            Swal.fire({
+                title: 'Contraseña incorrecta',
+                text: 'Intetelo de nuevo por favor',
+                icon: 'error',
+                confirmButtonText: 'Aceptar'
+            });
         }
         
 

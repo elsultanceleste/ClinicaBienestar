@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Administrador'){
+    header('location:../administrador/dashboard.php');
+    
+}else if($_SESSION['rol'] == 'Recepcionista'){
+    header('location:../recepcionista/dashboard.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,8 +27,27 @@
         <?php include './components/sidebar.php'; ?>
 
         <div class="main col-12 col-lg-9 ">
-            <div class="header container b p-2 d-flex justify-content-between w-100 align-items-center col-12 ">
-                <!-- Encabezado sin cambios -->
+        <div class="header container b p-2 d-flex justify-content-between w-100 align-items-center col-12 ">
+                <div class="btn-menu">
+                    <button class="btn d-block d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">
+                        <i class="fa-solid fa-bars fs-2"></i>
+                    </button>
+                </div>
+
+                <div class="user">
+                    <div class="dropdown">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i> Dr.<?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
+                        </a>
+
+                        <!-- Replace the dropdown menu items with: -->
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="container">
@@ -37,7 +69,7 @@
                             <div class="card-body">
                                 <h5 class="card-title text-center">Citas Atendidas</h5>
                                 <div class="w-100 d-flex align-items-center justify-content-center gap-3 ">
-                                    <i class="fa-solid fa-check-circle fs-3 text-success"></i>
+                                    <i class="fa-solid fa-check-circle fs-3 text-black"></i>
                                     <span class="fs-3">89</span>
                                 </div>
                             </div>
@@ -61,7 +93,7 @@
             <div class="container-fluid mt-3">
                 <div class="row gap-3 justify-content-center">
                     <!-- Sección principal de citas con pestañas -->
-                    <div class="col-12 col-lg-8">
+                    <div class="col-12 col-lg-12">
                         <div class="card">
                             <div class="card-body">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -145,34 +177,6 @@
                         </div>
                     </div>
 
-                    <!-- Sección de Solicitudes de Citas -->
-                    <div class="col-12 col-lg-3">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title text-center mb-3">Solicitudes Recientes</h5>
-                                <div class="list-group">
-                                    <div class="list-group-item">
-                                        <div class="d-flex justify-content-between">
-                                            <div>
-                                                <h6>Carlos Sánchez</h6>
-                                                <small>2023-12-18 16:00</small><br>
-                                                <small>Dolor de cabeza</small>
-                                            </div>
-                                            <div class="btn-group-vertical">
-                                                <button class="btn btn-success btn-sm mb-1">
-                                                    <i class="fa-solid fa-check"></i>
-                                                </button>
-                                                <button class="btn btn-danger btn-sm">
-                                                    <i class="fa-solid fa-xmark"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Más solicitudes -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -188,35 +192,39 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <!-- Update the form in modalAtender -->
+                    <form id="formAtencion">
+                        <input type="hidden" id="cita_id" name="cita_id">
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Paciente</label>
-                                <input type="text" class="form-control" value="María González" readonly>
+                                <input type="text" class="form-control" id="paciente_nombre" readonly>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Fecha y Hora</label>
-                                <input type="text" class="form-control" value="2023-12-15 10:00" readonly>
+                                <input type="text" class="form-control" id="fecha_hora" readonly>
                             </div>
                             <div class="col-12 mb-3">
                                 <label class="form-label">Diagnóstico</label>
-                                <textarea class="form-control" rows="3" placeholder="Ingrese el diagnóstico..."></textarea>
+                                <textarea class="form-control" name="diagnostico" rows="3" required></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Tratamiento</label>
-                                <textarea class="form-control" rows="3" placeholder="Indique el tratamiento..."></textarea>
+                                <textarea class="form-control" name="tratamiento" rows="3" required></textarea>
                             </div>
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Observaciones</label>
-                                <textarea class="form-control" rows="3" placeholder="Agregue observaciones..."></textarea>
+                                <label class="form-label">Receta</label>
+                                <textarea class="form-control" name="receta" rows="3"></textarea>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-success">Guardar Atención</button>
+                        </div>
                     </form>
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success">Guardar Atención</button>
-                </div>
+
             </div>
         </div>
     </div>
@@ -232,16 +240,16 @@
                 <div class="modal-body">
                     <dl class="row">
                         <dt class="col-sm-4">Paciente:</dt>
-                        <dd class="col-sm-8">María González</dd>
+                        <dd id="nombrePaciente" class="col-sm-8">María González</dd>
 
                         <dt class="col-sm-4">Fecha/Hora:</dt>
-                        <dd class="col-sm-8">2023-12-15 10:00</dd>
+                        <dd id="detalle_fecha" class="col-sm-8">2023-12-15 10:00</dd>
 
                         <dt class="col-sm-4">Motivo:</dt>
-                        <dd class="col-sm-8">Control rutinario</dd>
+                        <dd id="detalle_motivo" class="col-sm-8">Control rutinario</dd>
 
                         <dt class="col-sm-4">Historial Médico:</dt>
-                        <dd class="col-sm-8">
+                        <dd id="detalle_historial" class="col-sm-8">
                             <ul class="list-unstyled">
                                 <li><span class="badge bg-primary">Última visita: 2023-11-10</span></li>
                                 <li>Alergias: Ninguna registrada</li>
@@ -262,7 +270,9 @@
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
                 <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="modalHistorialLabel"><i class="fa-solid fa-file-waveform me-2"></i>Historial Médico</h5>
+                    <h5 class="modal-title" id="modalHistorialLabel">
+                        <i class="fa-solid fa-file-waveform me-2"></i>Historial Médico
+                    </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -273,38 +283,24 @@
                                     <h6 class="mb-0">Datos del Paciente</h6>
                                 </div>
                                 <div class="card-body">
-                                    <p class="mb-1"><strong>Nombre:</strong> Juan Pérez</p>
-                                    <p class="mb-1"><strong>Edad:</strong> 45 años</p>
-                                    <p class="mb-1"><strong>Grupo Sanguíneo:</strong> O+</p>
-                                    <p class="mb-1"><strong>Alergias:</strong> Penicilina</p>
+                                    <input type="text" id="id_paciente" hidden>
+                                    <p class="mb-1"><strong>Nombre:</strong> <span id="historial_nombre"></span></p>
+                                    <p class="mb-1"><strong>Edad:</strong> <span id="historial_edad"></span> años</p>
+                                    <p class="mb-1"><strong>Grupo Sanguíneo:</strong> <span id="historial_sangre"></span></p>
+                                    <p class="mb-1"><strong>Alergias:</strong> <span id="historial_alergias"></span></p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="timeline">
-                                <div class="timeline-item">
-                                    <div class="timeline-date">2023-12-14</div>
-                                    <div class="timeline-content">
-                                        <h6>Hipertensión controlada</h6>
-                                        <p>Presión arterial: 120/80 mmHg</p>
-                                        <p class="text-muted small">Dr. Carlos Martínez</p>
-                                    </div>
-                                </div>
-                                <div class="timeline-item">
-                                    <div class="timeline-date">2023-11-10</div>
-                                    <div class="timeline-content">
-                                        <h6>Control de diabetes</h6>
-                                        <p>Glucosa en ayunas: 95 mg/dL</p>
-                                        <p class="text-muted small">Dra. Ana Sánchez</p>
-                                    </div>
-                                </div>
+                                <!-- Timeline items will be dynamically inserted here by JavaScript -->
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" onclick="imprimirHistorial()">
                         <i class="fa-solid fa-print me-2"></i>Imprimir
                     </button>
                 </div>
@@ -320,6 +316,9 @@
         const ctx = document.getElementById('myChart');
         // ... Configuración de gráficos ...
     </script>
+
+    <script src="./js/citas.js"></script>
+
 
 </body>
 

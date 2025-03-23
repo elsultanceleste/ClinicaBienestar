@@ -102,10 +102,46 @@ FROM
     INNER JOIN medicos m ON c.medico_id = m.id
 WHERE 
     DATE(c.fecha_cita) = CURDATE() 
-    AND m.id = 1;
+    AND m.id = 1 AND c.estado= 'Programada';
 
     INSERT INTO citas (paciente_id, medico_id, fecha_cita, motivo, tipo, estado) 
 VALUES (5, 1, CURDATE() + INTERVAL 5 HOUR, 'Chequeo de visión', 'Consulta', 'Programada');
 
 
 SELECT * FROM citas;
+
+SELECT m.id, e.nombre, e.apellido, m.especialidad 
+FROM medicos m 
+INNER JOIN empleados e ON m.id_empleado= e.id;
+
+SELECT p.nombre, p.apellido, c.fecha_cita, c.estado, c.tipo, c.motivo, m.especialidad, e.nombre AS nombre_medico, e.apellido AS apellido_medico
+FROM citas c
+INNER JOIN pacientes p ON c.paciente_id = p.id
+INNER JOIN medicos m ON c.medico_id = m.id
+INNER JOIN empleados e ON m.id_empleado = e.id; 
+
+SELECT 
+    (SELECT COUNT(*) FROM pacientes p LEFT JOIN usuario u ON p.id = u.id_paciente WHERE u.id_paciente IS NULL) AS pacientes_sin_cuenta,
+    (SELECT COUNT(*) FROM usuario WHERE id_paciente IS NOT NULL) AS pacientes_con_cuenta;
+
+    SELECT 
+        CASE 
+            WHEN u.id_paciente IS NOT NULL THEN 'Paciente con cuenta'
+            ELSE 'Paciente sin cuenta'
+        END as estado,
+        COUNT(*) as total
+    FROM pacientes p
+    LEFT JOIN usuario u ON p.id = u.id_paciente
+    GROUP BY 
+        CASE 
+            WHEN u.id_paciente IS NOT NULL THEN 'Paciente con cuenta'
+            ELSE ' Paciente sin cuenta'
+        END
+
+        SELECT * FROM pacientes;
+
+        SELECT 
+            p.*,
+            CONCAT(p.nombre, ' ', p.apellido) as nombre_completo
+            FROM pacientes p 
+            WHERE p.id = 1

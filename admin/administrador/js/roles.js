@@ -56,17 +56,6 @@ function roles() {
             <tr>
                 <td>${rol.id}</td>
                 <td>${rol.nombre}</td>
-                                    
-                <td>
-                    <div class="btn-group">
-                        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#modalEditarRol">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </button>
-                        <button class="btn btn-sm btn-danger">
-                                                <i class="fa-solid fa-trash"></i>
-                        </button>
-                    </div>
-                </td>
             </tr>
             `;
     }

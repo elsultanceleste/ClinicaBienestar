@@ -1,3 +1,17 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Administrador'){
+    header('location:../administrador/dashboard.php');
+    
+}else if($_SESSION['rol'] == 'Recepcionista'){
+    header('location:../recepcionista/dashboard.php');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +38,14 @@
                 <div class="user">
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Usuario
+                            <i class="fa-solid fa-user"></i> Dr.<?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
                         </a>
 
+                        <!-- Replace the dropdown menu items with: -->
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Perfil</a></li>
-                            <li><a class="dropdown-item" href="#">Cuenta</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
+                            <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -57,136 +72,19 @@
                                         <th scope="col">Acciones</th>
                                     </tr>
                                 </thead>
+                                <!-- Add this before closing body tag -->
+                                
+                                <!-- Update the table body to be empty initially -->
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalHistorial"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr> <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>30</td>
-                                        <td>Hombre</td>
-                                        <td>123 Main St</td>
-                                        <td>555-123-4567</td>
-                                        <td>
-                                            <span class="d-inline-block" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="Historial">
-                                                <a href="#" class="btn btn-primary btn-sm"><i class="fa-solid fa-book-medical"></i></a>
-                                            </span>
-                                            <a href="#" class="btn btn-warning btn-sm">Editar</a>
-                                            <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
-                                        </td>
-                                    </tr>
+                                    <!-- Data will be loaded dynamically -->
                                 </tbody>
+                                
                             </table>
                         </div>
                     </div>
 
                     <!-- modal para ver Historial del paciente  -->
-                     <div class="modal fade" id="modalHistorial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalHistorial" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -195,62 +93,34 @@
                                 </div>
                                 <div class="modal-body">
                                     <!-- Aquí irá el contenido del modal -->
+                                    <!-- Update the modal table structure -->
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Fecha</th>
-                                                <th scope="col">Diagnóstico</th>
-                                                <th scope="col">Medicamentos</th>
-                                                <th scope="col">Tratamiento</th>
-                                                <th scope="col">Receta</th>
-
-                                                </tr>
+                                                <th>Fecha</th>
+                                                <th>Diagnóstico</th>
+                                                <th>Tratamiento</th>
+                                                <th>Receta</th>
+                                                <th>PDF</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>12/02/2022</td>
-                                                <td>Catarata</td>
-                                                <td>Paracetamol, ibuprofeno</td>
-                                                <td>Tratamiento de catarata</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Descargar</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>10/01/2022</td>
-                                                <td>Gripe</td>
-                                                <td>Amoxicilina, clavulanica</td>
-                                                <td>Tratamiento de gripe</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Descargar</a></td>
-                                            </tr>
-
-
-
-                                            <tr>
-                                                <td>08/12/2021</td>
-                                                <td>Dengue</td>
-                                                <td>Rifampicina, zanamivir</td>
-                                                <td>Tratamiento de dengue</td>
-                                                <td><a href="#" class="btn btn-primary btn-sm">Descargar</a></td>
-                                            </tr>
-                                        
+                                            <!-- Data will be loaded dynamically -->
                                         </tbody>
-
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
 
     <?php require_once('./components/script.php') ?>
+    <script src="./js/pacientes.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-            var popoverList = popoverTriggerList.map(function(popoverTriggerEl) {
-                return new bootstrap.Popover(popoverTriggerEl);
-            });
-        });
-    </script>
-    </script>
+
 
 </body>
 

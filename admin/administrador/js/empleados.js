@@ -10,14 +10,21 @@ formNuevoEmpleado.addEventListener("submit", (e) => {
     // Obtener el texto de la opción seleccionada
     var select = document.querySelector('select[name="rol"]');
     var rolSelecionado = select.options[select.selectedIndex].text;
+    console.log(rolSelecionado);
+    const imagenInput = document.getElementById('perfil');
+      const archivo = imagenInput.files[0];
+      
+      
+    
   
     if (
-      dato.get("nombre") == "" ||
-      dato.get("apellidos") == "" ||
-      dato.get("correo") == "" ||
-      dato.get("telefono") == "" ||
-      dato.get("rol") == "" ||
-      dato.get("dirrecion") == ""
+      dato.get("nombre") === "" ||
+      dato.get("apellidos") === "" ||
+      dato.get("correo") === "" ||
+      dato.get("telefono") === "" ||
+      dato.get("rol") === "" ||
+      dato.get("direccion") === "" || // Corregido el typo
+      dato.get("nacionalidad") === ""
     ) {
       Swal.fire({
         icon: "error",
@@ -25,12 +32,37 @@ formNuevoEmpleado.addEventListener("submit", (e) => {
         text: "Todos los campos son obligatorios",
       });
       return;
-    } else if (rolSelecionado == "Medico" && dato.get('especialidad') == '') {
+    } else if (rolSelecionado == "Medico" && dato.get('especialidad') == ''){
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "Si es un medico, debe introducir su especialidad",
+        text: "Debe introducir todos los datos del medico",
       });
+      return;
+    }else if (rolSelecionado == "Medico" && dato.get('titulo') == '' ){
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Debe introducir todos los datos del medico",
+      });
+      return;
+    }else if (rolSelecionado == "Medico" && dato.get('anosExperiencia') == '' ){
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Debe introducir todos los datos del medico",
+      });
+      return;
+    }else if (rolSelecionado == "Medico" && dato.get('idiomas') == '' ){
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Debe introducir todos los datos del medico",
+      });
+      return;
+    }else if (rolSelecionado == "Medico" && dato.get('idiomas') == '' ){
+    }else if (!archivo) {
+      Swal.fire('Error', 'Selecciona una imagen', 'error');
       return;
     }
   
@@ -46,6 +78,7 @@ formNuevoEmpleado.addEventListener("submit", (e) => {
         Swal.showLoading();
       }
     });
+
   
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "./php/empleados.php", true);
@@ -56,12 +89,14 @@ formNuevoEmpleado.addEventListener("submit", (e) => {
       let respuesta = JSON.parse(xhr.responseText);
       
       if (respuesta.estado == 'exitoso') {
+        formNuevoEmpleado.reset();
+        cargarEmpleados();
         Swal.fire({
           icon: "success",
           title: respuesta.mensaje,
         });
-        cargarEmpleados();
-        formNuevoEmpleado.reset();
+        
+        
       } else {
         Swal.fire({
           icon: "error",

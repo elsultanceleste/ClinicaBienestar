@@ -1,3 +1,16 @@
+<?php
+session_start();
+if (!isset($_SESSION['id'])) {
+    header('location:../');
+}else if($_SESSION['rol'] == 'Administrador'){
+    header('location:../administrador/dashboard.php');
+    
+}else if($_SESSION['rol'] == 'Medico'){
+    header('location:../doctor/dashboard.php');
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,13 +41,13 @@
                 <div class="user">
                     <div class="dropdown">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fa-solid fa-user"></i> Recepcionista
+                            <i class="fa-solid fa-user"></i> Sr. <?php if (isset($_SESSION['nombre'])) echo $_SESSION['nombre'] ?>
                         </a>
 
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="./perfil.php">Perfil</a></li>
                             <li><a class="dropdown-item" href="./cuenta.php">Cuenta</a></li>
-                            <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                            <li><a class="dropdown-item" href="../php/cerrarSesion.php">Cerrar sesión</a></li>
                         </ul>
                     </div>
                 </div>
@@ -58,30 +71,29 @@
             <div class="container w-100  mt-5 d-flex flex-column justify-content-center p-3">
                 <p class="h4 w-100 text-center">CITAS</p>
 
-                <div class="col-12 mb-5">
-                    <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">Nueva cita</a>
-                </div>
 
-                <div class="table-responsive ">
-                    <table class="table table-striped-columns table-success">
+                <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+                    <table class="table table-striped-columns">
                         <thead class="text-center">
                             <tr>
 
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Apellidos</th>
-                                <th scope="col">Hora</th>
-                                <th scope="col">Estado</th>
-                                <th scope="col">Medico</th>
-                                <th scope="col">decripcion</th>
+                                <th class="bg-success text-white" scope="col">#</th>
+                                <th class="bg-success text-white" scope="col">Nombre</th>
+                                <th class="bg-success text-white" scope="col">Apellidos</th>
+                                <th class="bg-success text-white" scope="col">Fecha</th>
+                                <th class="bg-success text-white" scope="col">Hora</th>
+                                <th class="bg-success text-white" scope="col">Estado</th>
+                                <th class="bg-success text-white" scope="col">Medico</th>
+                                <th class="bg-success text-white" scope="col">decripcion</th>
 
                             </tr>
                         </thead>
-                        <tbody class="text-center">
+                        <tbody class="text-center" id="tabla-citas">
                             <tr>
                                 <th scope="row">1</th>
                                 <td>Zabulon</td>
                                 <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
                                 <td>12:30</td>
                                 <td>En espera</td>
                                 <td>Dr. Rafael</td>
@@ -92,32 +104,146 @@
                             </tr>
 
                             <tr>
-                                <th scope="row">2</th>
+                                <th scope="row">1</th>
                                 <td>Zabulon</td>
                                 <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
                                 <td>12:30</td>
                                 <td>En espera</td>
                                 <td>Dr. Rafael</td>
                                 <td>
                                     Lorem, ipsum dolor sit
                                     amet consectetur adipisicing elit.
-                                    Quis, maiores!
                                 </td>
                             </tr>
 
                             <tr>
-                                <th scope="row">3</th>
+                                <th scope="row">1</th>
                                 <td>Zabulon</td>
                                 <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
                                 <td>12:30</td>
                                 <td>En espera</td>
                                 <td>Dr. Rafael</td>
                                 <td>
                                     Lorem, ipsum dolor sit
                                     amet consectetur adipisicing elit.
-                                    Quis, maiores!
                                 </td>
                             </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Zabulon</td>
+                                <td>Sima Oluy</td>
+                                <td>2025-02-03</td>
+                                <td>12:30</td>
+                                <td>En espera</td>
+                                <td>Dr. Rafael</td>
+                                <td>
+                                    Lorem, ipsum dolor sit
+                                    amet consectetur adipisicing elit.
+                                </td>
+                            </tr>
+
+
                         </tbody>
                     </table>
                 </div>
@@ -133,56 +259,11 @@
             <!-- FOOTER -->
             <?php require('./components/footer.php'); ?>
 
-
+            <script src="./js/citas.js"></script>
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar cita</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="" method="post">
-                        <div class="mb-3">
-                            <label for="paciente" class="form-label">Nombre del paciente</label>
-                            <input type="text" class="form-control" id="paciente" name="paciente">
-                        </div>
-                        <div class="mb-3">
-                            <label for="apellidos" class="form-label">Apellidos del paciente</label>
-                            <input type="text" class="form-control" id="apellidos" name="apellidos">
-                        </div>
-                        <div class="mb-3">
-                            <label for="medico" class="form-label">Medico</label>
-                            <select name="medico" id="" class="form-control">
-                                <option value="">Selecionar doctor</option>
-                                <option value="" name="">Doctor1</option>
-                                <option value="" name="">Doctor2</option>
-                                <option value="" name="">Doctor3</option>
-                                <option value="" name="">Doctor4</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="hora" class="form-label">Hora</label>
-                            <input type="time" class="form-control" id="hora" name="hora">
-                        </div>
 
-                        <div class="mb-3">
-                            <label for="descripcion" class="form-label">Descripcion</label>
-                            <textarea name="descripcion" class="form-control" id="descripcion"></textarea>
-                        </div>
-
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn guardar">Agregar cita</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 </body>
 

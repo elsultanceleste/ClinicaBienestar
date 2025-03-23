@@ -27,7 +27,7 @@ if (mysqli_num_rows($resultado) > 0) {
         //verificar estad 
         if ($dato['estado'] == 1) {
             $id_empleado = $dato['id_empleado'];
-            $query = "SELECT e.id, e.nombre,  r.nombre as rol
+            $query = "SELECT e.id, e.nombre, e.apellido, e.email,  r.nombre as rol
             from empleados e 
             INNER JOIN rol r ON e.id_rol = r.id
             WHERE e.id='$id_empleado';";
@@ -39,15 +39,18 @@ if (mysqli_num_rows($resultado) > 0) {
             $_SESSION['id'] = $id_empleado;
             $_SESSION['nombre'] = $datosEmpleado['nombre'];
             $_SESSION['rol'] = $datosEmpleado['rol'];
+            $_SESSION['apellidos'] = $datosEmpleado['apellido'];
+            $_SESSION['email'] = $datosEmpleado['email'];
             if ($_SESSION['rol'] =='Administrador') {
                 echo 1;
             }else if ($_SESSION['rol']=='Medico') {
-                $query ="SELECT id FROM medicos WHERE id_empleado = '$id_empleado'";
+                $query ="SELECT id, especialidad FROM medicos WHERE id_empleado = '$id_empleado'";
                 $stmt = mysqli_prepare($conexion, $query);
                 mysqli_stmt_execute($stmt);
                 $datos = mysqli_stmt_get_result($stmt);
                 $datosMedico = mysqli_fetch_assoc($datos);
                 $_SESSION['id_medico'] = $datosMedico['id'];
+                $_SESSION['especialidad'] = $datosMedico['especialidad'];
                 echo 2;
             }else if ($_SESSION['rol']=='Recepcionista'){
                 echo 3;
